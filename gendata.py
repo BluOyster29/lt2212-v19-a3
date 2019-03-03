@@ -74,9 +74,21 @@ def one_hot_encoder(corpus,vocabualary_size):
         #print('vocab item: ' + str(counter))    
     return one_hot_corpus
 
-def gen_one_hot_matrix(line_matrix,line_sart,line_end,n_grams,corpus):
-    pass
+def training_lines(start_line, end_line, line_matrix):
+    output_file = line_matrix[start_line -1:end_line -1]
+    return output_file
 
+def gen_ngrams(training_lines, one_hot_matrix):
+    line_hots = []
+    for lines in training_lines:
+        n_one_hots = []
+        for i in range(2,len(lines)):
+            hotty = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]]
+            n_one_hots.append(hotty)
+    line_hots += n_one_hots
+
+    return line_hots
+    
 if __name__ == '__main__':
     input, output, startline, endline, ngrams = args()
     print("Input File is {}".format(input))
@@ -86,14 +98,18 @@ if __name__ == '__main__':
     print("Number of ngrams is {}".format(ngrams))
     line_matrix, vocab, v = open_text(input)
     one_hot_matrix = one_hot_encoder(vocab,v)
+    training_lines = training_lines(startline, endline, line_matrix)
+    #print(training_lines, vocab)
+    print(vocab)
+    print(gen_ngrams(training_lines,one_hot_matrix))
 
 '''
 import gendata as t
-input, output, startline, endline, ngrams = t.args()
+input, output, startline, endline, ngrams = "brown_data/brown_rga.txt", "poop.txt", 1, 2, 2
 line_matrix, vocab, v = t.open_text(input)
 one_hot_matrix = t.one_hot_encoder(vocab,v)
-
-
+training_lines = t.training_lines(startline, endline, line_matrix)
+print(t.gen_ngrams(training_lines))
 '''
 
 # THERE ARE SOME CORNER CASES YOU HAVE TO DEAL WITH GIVEN THE INPUT
