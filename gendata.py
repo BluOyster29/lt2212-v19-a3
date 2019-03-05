@@ -80,30 +80,40 @@ def gen_ngrams(start_line, end_line, line_matrix, one_hot_matrix, n):
     model = {}
     for lines in output_file:
         n_one_hots = []
-        for i in range(2,len(lines)):
+        for i in range(3,len(lines)):
             if n == 2:
-                hotty = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]]
-                hotty.append(lines[i] + '|' + lines[i-1])
-                model[lines[i] + '|' + lines[i-1]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]]
+                hotty = one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-1]]
+                #hotty.append(lines[i] + '|' + lines[i-1])
+                #model[lines[i] + '|' + lines[i-1]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]]
+                hotty.append(lines[i])
                 n_one_hots.append(hotty)
-           
+                model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]]
+                #n_one_hots.append((hotty,lines[i]))
+                #n_one_hots.append(lines[i])
             elif n == 3:
-                hotty = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]]
-                hotty.append(lines[i] + '|' + lines[i-1] + '|' + lines[i-2])
-                model[lines[i] + '|' + lines[i-1] + '|' + lines[i-2]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]]
+                hotty = one_hot_matrix[lines[i-3]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-1]]
+                #hotty.append(lines[i] + '|' + lines[i-1] + '|' + lines[i-2])
+                #model[lines[i] + '|' + lines[i-1] + '|' + lines[i-2]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]]
+                hotty.append(lines[i])
                 n_one_hots.append(hotty)
-
+                model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]]
+                #n_one_hots.append((hotty, lines[i]))
+                #n_one_hots.append(lines[i])
             elif n == 4:
-                hotty = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-3]]
-                hotty.append(lines[i] + lines[i-1] + '|' + lines[i-2] + '|' + lines[i-3])
-                model[lines[i] + lines[i-1] + '|' + lines[i-2] + '|' + lines[i-3]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-3]]
+                hotty = one_hot_matrix[lines[i-4]] + one_hot_matrix[lines[i-3]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-1]]
+                #hotty.append(lines[i] + lines[i-1] + '|' + lines[i-2] + '|' + lines[i-3])
+                #model[lines[i] + lines[i-1] + '|' + lines[i-2] + '|' + lines[i-3]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-3]]
+                hotty.append(lines[i])
                 n_one_hots.append(hotty)
-
-    line_hots.append(n_one_hots)
-    return model
+                model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-3]]
+                #n_one_hots.append((hotty, lines[1]))
+                #n_one_hots.append(lines[i])
+        line_hots += n_one_hots
+    #print(line_hots)
+    return line_hots
     
-def output_file(training_lines, output):
-    df = pd.DataFrame.from_dict(training_lines)
+def output_file(training_lines, output):    
+    df = pd.DataFrame(training_lines)
     df.to_csv(path_or_buf=output + '.csv', index=False)
     
 if __name__ == '__main__':
@@ -114,10 +124,11 @@ if __name__ == '__main__':
     print("Endline is {}".format(endline))
     print("Number of ngrams is {}".format(ngrams))
     line_matrix, vocab, v = open_text(input)
+    #print(line_matrix)
     one_hot_matrix = one_hot_encoder(vocab,v)
     training_lines = gen_ngrams(startline, endline, line_matrix,one_hot_matrix,ngrams)
     output_file(training_lines, output)
-    print(output)
+    #print(output)
     
 
 '''

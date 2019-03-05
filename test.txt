@@ -1,3 +1,0 @@
-<start> <start> a b c d e f g
-<start> <start> a c d f g b b
-<start> <start> c c d f a g b
