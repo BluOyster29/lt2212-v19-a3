@@ -41,7 +41,7 @@ def process_test_file(datafile):
 def test_model(model,test_file):
     vectors = []
     classes = []
-    
+
     for i in test_file:
         vector = list(i[:-1])
         classification = i[-1]
@@ -60,6 +60,8 @@ def test_model(model,test_file):
     #print(model.predict_log_proba(vectors))
 
     print(model.score(vectors, classes, sample_weight=None))
+    print(model.predict(vectors))
+    print(model.predict_log_proba(vectors))
 
 
 if __name__ == "__main__":
@@ -68,8 +70,11 @@ if __name__ == "__main__":
     model = open_pickle_jar(modelfile)
     test_file = process_test_file(datafile)
     testing_model = test_model(model, test_file)
+
+    '''
     print("Loading data from file {}.".format(datafile))
     print("Loading model from file {}.".format(modelfile))
     print("Testing {}-gram model.".format(ngram))
     print("Accuracy is ...")
     print("Perplexity is...")
+    '''
