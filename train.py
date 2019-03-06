@@ -22,20 +22,36 @@ def args():
     return args.datafile, args.ngram, args.modelfile
 
 def read_datafile(datafile):
-    data = pd.read_csv(datafile).values
+    print("reading data")
+    data = pd.read_csv(datafile)
     vectors = []
     classes = []
-    for i in data:
+    print("formatting")
+    
+    #print(data.values[:,-1])
+    """
+    for i in data.values:
+        print('..')
         vector = list(i[:-1])
         classification = i[-1]
         vectors.append(vector)
         classes.append(classification)
-    lr = LogisticRegression(multi_class='multinomial', solver='lbfgs')
-    pre_pickled_data = lr.fit(vectors,classes, sample_weight=None)
+    """
+
+    
+    vectors = np.array(vectors)
+    classes = np.array(classes)
+    print(vectors.shape)
+    print(classes.shape)
+    print("generating model")
+    lr = LogisticRegression(multi_class='multinomial', solver='lbfgs', verbose=1)
+    pre_pickled_data = lr.fit(data.values[:,:-1],data.values[:,-1], sample_weight=None)
+    
     return pre_pickled_data
+    
 
 def pickling(data,modelfile):
-
+    print("pickling")
     return pickle.dump(data, open(modelfile + '.p', "wb"))
 
 if __name__ == "__main__":
@@ -43,7 +59,6 @@ if __name__ == "__main__":
     datafile, ngram, modelfile = args()
     data = read_datafile(datafile)
     exported_data = pickling(data, modelfile)
-    
     print("Loading data from file {}.".format(datafile))
     print("Training {}-gram model.".format(ngram))
     print("Writing table to {}.".format(modelfile))

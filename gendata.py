@@ -77,17 +77,17 @@ def one_hot_encoder(corpus,vocabualary_size):
 def gen_ngrams(start_line, end_line, line_matrix, one_hot_matrix, n):
     output_file = line_matrix[start_line -1:end_line -1]
     line_hots = []
-    model = {}
+    #model = {}
     for lines in output_file:
         n_one_hots = []
-        for i in range(3,len(lines)):
+        for i in range(4,len(lines)):
             if n == 2:
                 hotty = one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-1]]
                 #hotty.append(lines[i] + '|' + lines[i-1])
                 #model[lines[i] + '|' + lines[i-1]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]]
                 hotty.append(lines[i])
                 n_one_hots.append(hotty)
-                model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]]
+                #model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]]
                 #n_one_hots.append((hotty,lines[i]))
                 #n_one_hots.append(lines[i])
             elif n == 3:
@@ -96,7 +96,7 @@ def gen_ngrams(start_line, end_line, line_matrix, one_hot_matrix, n):
                 #model[lines[i] + '|' + lines[i-1] + '|' + lines[i-2]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]]
                 hotty.append(lines[i])
                 n_one_hots.append(hotty)
-                model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]]
+                #model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]]
                 #n_one_hots.append((hotty, lines[i]))
                 #n_one_hots.append(lines[i])
             elif n == 4:
@@ -105,28 +105,38 @@ def gen_ngrams(start_line, end_line, line_matrix, one_hot_matrix, n):
                 #model[lines[i] + lines[i-1] + '|' + lines[i-2] + '|' + lines[i-3]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-3]]
                 hotty.append(lines[i])
                 n_one_hots.append(hotty)
-                model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-3]]
+                #model[lines[i]] = one_hot_matrix[lines[i]] + one_hot_matrix[lines[i-1]] + one_hot_matrix[lines[i-2]] + one_hot_matrix[lines[i-3]]
                 #n_one_hots.append((hotty, lines[1]))
                 #n_one_hots.append(lines[i])
         line_hots += n_one_hots
     #print(line_hots)
-    return line_hots
+    return np.array(line_hots)
     
-def output_file(training_lines, output):    
+def output_file(training_lines, output):  
+    print('generating dataframe')  
     df = pd.DataFrame(training_lines)
+    print('outputting')
     df.to_csv(path_or_buf=output + '.csv', index=False)
     
 if __name__ == '__main__':
     input, output, startline, endline, ngrams = args()
+    line_break = "-" * 30 + "\n"
+    print(line_break)
+    print("File Stats")
+    print(line_break)
     print("Input File is {}".format(input))
     print("output File is {}".format(output))
     print("Startline is {}".format(startline))
     print("Endline is {}".format(endline))
     print("Number of ngrams is {}".format(ngrams))
+    print(line_break)
+    print('formatting lines, generating vocab\n')
     line_matrix, vocab, v = open_text(input)
-    #print(line_matrix)
+    print('generating one-hots\n')
     one_hot_matrix = one_hot_encoder(vocab,v)
+    print('generating one-hot matrix\n')
     training_lines = gen_ngrams(startline, endline, line_matrix,one_hot_matrix,ngrams)
+    print('outputting file\n')
     output_file(training_lines, output)
     #print(output)
     
