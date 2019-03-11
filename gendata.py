@@ -166,7 +166,6 @@ def main():
     print(line_break)
     print('formatting lines, generating vocab\n')
     line_matrix, vocab, v = open_text(input, startline, endline, pos)
-    print(len(vocab))
     print('generating one-hots\n')
     one_hot_matrix = one_hot_encoder(vocab,v)
     print('generating one-hot matrix\n')
