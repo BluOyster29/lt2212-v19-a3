@@ -1,8 +1,4 @@
-import os, sys
-import argparse
-import numpy as np
-import pandas as pd
-import pickle
+import os, sys, argparse, numpy as np, pandas as pd, pickle
 from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_iris
 
@@ -23,19 +19,28 @@ def args():
 
 def read_datafile(datafile, modelfile):
     """function that reads the data file then formats the data into vectors and classes
-    to be passed to the logistic regression function, I have used the 'sag' solver as I believed
+    to be passed to the logistic regression function, I have used the 'saga' solver as I believed
     this might be quicker (due to a stranger on the internet), I have also set max_ter to 20 as the 
     function seems to take an awfully long time on anything over 100 lines"""
     print("reading data")
-    data = pd.read_csv(datafile)
+    bata = pd.read_csv(datafile)
+    #data = bata.tolist()
+
+    '''
+    vectors = []
+    classes = []
+    for i in data:
+        vectors.append(i[:-1])
+        classes.append(i[-1])
+    '''
     print("generating model")
-    lr = LogisticRegression(multi_class='multinomial', solver='sag', verbose=1, n_jobs=2, max_iter=20)
+    lr = LogisticRegression(multi_class='multinomial', solver='saga', verbose=1, n_jobs=, max_iter=20)
     print("fitting")
-    pre_pickled_data = lr.fit(X=data.values[:,:-1],y=data.values[:,-1], sample_weight=None)
+    pre_pickled_data = lr.fit(X=bata.iloc[:,:-1],y=bata.iloc[:,-1], sample_weight=None).sparsify()
     print("pickling")
     ogorki = pickle.dump(pre_pickled_data, open(modelfile + '.p', "wb")) #outputting pickled file
     return ogorki #ogorki is polish for pickled cucumber, my favourite snack
-
+    
 def main():
     #main function
     datafile, ngram, modelfile = args()
