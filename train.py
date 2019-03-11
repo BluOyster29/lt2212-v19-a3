@@ -7,7 +7,9 @@ from sklearn.datasets import load_iris
 # add whatever additional imports you may need here.
 
 def args():
+
     """again more args here than on a pirate ship"""
+
     parser = argparse.ArgumentParser(description="Train a maximum entropy model.")
     parser.add_argument("-N", "--ngram", metavar="N", dest="ngram", type=int, default=3, help="The length of ngram to be considered (default 3).")
     parser.add_argument("datafile", type=str,
@@ -15,33 +17,29 @@ def args():
     parser.add_argument("modelfile", type=str,
                         help="The name of the file to which you write the trained model.")
     args = parser.parse_args()
+    
     return args.datafile, args.ngram, args.modelfile
 
 def read_datafile(datafile, modelfile):
+
     """function that reads the data file then formats the data into vectors and classes
     to be passed to the logistic regression function, I have used the 'saga' solver as I believed
     this might be quicker (due to a stranger on the internet), I have also set max_ter to 20 as the 
     function seems to take an awfully long time on anything over 100 lines"""
+
     print("reading data")
     bata = pd.read_csv(datafile)
-    #data = bata.tolist()
-
-    '''
-    vectors = []
-    classes = []
-    for i in data:
-        vectors.append(i[:-1])
-        classes.append(i[-1])
-    '''
     print("generating model")
     lr = LogisticRegression(multi_class='multinomial', solver='lbfgs', n_jobs=-1, max_iter=20, verbose=1)
     print("fitting")
     pre_pickled_data = lr.fit(X=bata.iloc[:,:-1],y=bata.iloc[:,-1], sample_weight=None).sparsify()
     print("pickling")
     ogorki = pickle.dump(pre_pickled_data, open(modelfile + '.p', "wb")) #outputting pickled file
+
     return ogorki #ogorki is polish for pickled cucumber, my favourite snack
     
 def main():
+
     #main function
     datafile, ngram, modelfile = args()
     data = read_datafile(datafile,modelfile)
