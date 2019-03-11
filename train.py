@@ -8,10 +8,10 @@ from sklearn.datasets import load_iris
 
 # train.py -- Don't forget to put a reasonable amount code comments
 # in so that we better understand what you're doing when we grade!
-
 # add whatever additional imports you may need here.
 
 def args():
+    """again more args here than on a pirate ship"""
     parser = argparse.ArgumentParser(description="Train a maximum entropy model.")
     parser.add_argument("-N", "--ngram", metavar="N", dest="ngram", type=int, default=3, help="The length of ngram to be considered (default 3).")
     parser.add_argument("datafile", type=str,
@@ -21,51 +21,32 @@ def args():
     args = parser.parse_args()
     return args.datafile, args.ngram, args.modelfile
 
-def read_datafile(datafile):
+def read_datafile(datafile, modelfile):
+    """function that reads the data file then formats the data into vectors and classes
+    to be passed to the logistic regression function, I have used the 'sag' solver as I believed
+    this might be quicker (due to a stranger on the internet), I have also set max_ter to 20 as the 
+    function seems to take an awfully long time on anything over 100 lines"""
     print("reading data")
     data = pd.read_csv(datafile)
-    vectors = []
-    classes = []
-    print("formatting")
-    
-    #print(data.values[:,-1])
-    """
-    for i in data.values:
-        print('..')
-        vector = list(i[:-1])
-        classification = i[-1]
-        vectors.append(vector)
-        classes.append(classification)
-    """
-
-    
-    vectors = np.array(vectors)
-    classes = np.array(classes)
-    print(vectors.shape)
-    print(classes.shape)
     print("generating model")
-    lr = LogisticRegression(multi_class='multinomial', solver='lbfgs', verbose=1)
-    pre_pickled_data = lr.fit(data.values[:,:-1],data.values[:,-1], sample_weight=None)
-    
-    return pre_pickled_data
-    
-
-def pickling(data,modelfile):
+    lr = LogisticRegression(multi_class='multinomial', solver='sag', verbose=1, n_jobs=2, max_iter=20)
+    print("fitting")
+    pre_pickled_data = lr.fit(X=data.values[:,:-1],y=data.values[:,-1], sample_weight=None)
     print("pickling")
-    return pickle.dump(data, open(modelfile + '.p', "wb"))
+    ogorki = pickle.dump(pre_pickled_data, open(modelfile + '.p', "wb")) #outputting pickled file
+    return ogorki #ogorki is polish for pickled cucumber, my favourite snack
 
-if __name__ == "__main__":
-
+def main():
+    #main function
     datafile, ngram, modelfile = args()
-    data = read_datafile(datafile)
-    exported_data = pickling(data, modelfile)
+    data = read_datafile(datafile,modelfile)
     print("Loading data from file {}.".format(datafile))
     print("Training {}-gram model.".format(ngram))
     print("Writing table to {}.".format(modelfile))
 
-
-
-
+if __name__ == "__main__":
+    main()
+    
 # YOU WILL HAVE TO FIGURE OUT SOME WAY TO INTERPRET THE FEATURES YOU CREATED.
 # IT COULD INCLUDE CREATING AN EXTRA COMMAND-LINE ARGUMENT OR CLEVER COLUMN
 # NAMES OR OTHER TRICKS. UP TO YOU.
