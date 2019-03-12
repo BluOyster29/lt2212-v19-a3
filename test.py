@@ -1,4 +1,4 @@
-import os, sys, argparse,pickle,numpy as np, pandas as pd
+import os, sys, argparse,pickle,numpy as np, pandas as pd, subprocess
 from sklearn.linear_model import LogisticRegression
 from scipy.stats import entropy
 from math import log2
@@ -6,6 +6,7 @@ from math import log2
 # test.py -- Don't forget to put a reasonable amount code comments
 # in so that we better understand what you're doing when we grade!
 # add whatever additional imports you may need here.
+
 def args():
 
     '''again i have put the args inside this function to keep them tidy'''
@@ -66,7 +67,7 @@ def test_model(model,vectors,classes):
 
         vector = vectors[i]
         probs=model.predict_proba([vector])[0]
-        pred_probs.append(max(prob))
+        pred_probs.append(max(probs))
 
     perplexity = 2**(entropy(pred_probs)) #this is calculated using built-in entropy function
     
@@ -77,6 +78,8 @@ def main():
     """again everything is neatly packed up in a main function"""
 
     ngram,datafile, modelfile = args()
+    training_file = datafile[:-11] +'training.csv'
+    zip_file = '/'.join(datafile.split("/")[:2]) + '/'
     model = open_pickle_jar(modelfile)
     vectors,classes = process_test_file(datafile)
     accuracy, perplexity = test_model(model, vectors,classes)
@@ -85,7 +88,23 @@ def main():
     print("Testing {}-gram model.".format(ngram))
     print("Accuracy is {}".format(accuracy))
     print("Perplexity is {}".format(perplexity))
-
+    f = open(modelfile[:-2] +'.md', 'w+')
+    f.write("<h1>Statistics<h1>\n\n")
+    f.write("<h2>Loading data from file {}.</h2>\n\n".format(datafile))
+    f.write("<h2>Loading model from file {}.</h2>\n\n".format(modelfile))
+    f.write("<h2>Testing {}-gram model.\n\n".format(ngram))
+    f.write("<h2>Accuracy: {}.</h2>\n\n".format(accuracy))
+    f.write("<h2>Perplexity: {}.</h2>\n\n".format(perplexity))
+    f.close()
+    one = subprocess.call(
+    'zip ' + zip_file + 'dataframes ' + datafile + ' ' +  training_file,
+    shell=True
+    )
+    one = subprocess.call(
+    'rm ' + datafile + ' ' + training_file,
+    shell=True
+    )
+    
 if __name__ == "__main__":
     main()
     

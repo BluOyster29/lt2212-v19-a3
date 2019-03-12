@@ -1,4 +1,4 @@
-import os, sys, glob, argparse, numpy as np, pandas as pd
+import os, sys, glob, argparse, numpy as np, pandas as pd, subprocess
 
 # gendata.py -- Don't forget to put a reasonable amount code comments
 # in so that we better understand what you're doing when we grade!
@@ -7,7 +7,8 @@ import os, sys, glob, argparse, numpy as np, pandas as pd
 
 def args():
 
-    '''This function creates and stores all the arg parsers, I put them in here because it felt a bit tidier.'''
+    '''This function creates and stores all the arg parsers, I put them in here because it felt a bit tidier. I have added -T and -P 
+    -T takes the percentage of the total range of lines to be used as test set. P signifies that the pos tags will be used'''
     
     parser = argparse.ArgumentParser(description="Convert text to features")
     parser.add_argument("-N", "--ngram", metavar="N", dest="ngram", type=int, default=3, help="The length of ngram to be considered (default 3).")
@@ -26,6 +27,11 @@ def args():
     parser.add_argument("outputfile", type=str,
                     help="The name of the output file for the feature table.")
     args = parser.parse_args()
+
+    one = subprocess.call(
+    'mkdir results/' + args.outputfile,
+    shell=True
+    )
 
     return args.inputfile, args.outputfile, args.startline, args.endline, args.ngram, args.test_range, args.pos
 
@@ -99,7 +105,9 @@ def gen_ngrams(start_line, end_line, line_matrix, one_hot_matrix, n,test_size):
     test set can be taken from random samples within a range'''
 
     np.random.shuffle(line_matrix) #randomizes the matrix
-    training_size = len(line_matrix) - test_size #specifies how many lines belong to training
+    test_slice = int((test_size/ len(line_matrix)) * 100)
+    training_size = len(line_matrix) - test_slice #specifies how many lines belong to training
+    print(training_size)
     training_lines,testing_lines = line_matrix[:training_size], line_matrix[training_size:] #slices the ranges
     training_set =[]
 
@@ -178,8 +186,8 @@ def output_file(training_set, testing_set, output):
     training = pd.DataFrame(training_set)
     testing = pd.DataFrame(testing_set)
     print('outputting')
-    training.to_csv(path_or_buf=output + '_training.csv', index=False)
-    testing.to_csv(path_or_buf=output + '_testing.csv', index=False)
+    training.to_csv(path_or_buf='results/' + output +'/'+ output +'_training.csv', index=False)
+    testing.to_csv(path_or_buf='results/' + output + '/' + output + '_testing.csv', index=False)
 
 def main():
 
@@ -205,7 +213,7 @@ def main():
     training_set,testing_set  = gen_ngrams(startline, endline, line_matrix,one_hot_matrix,ngrams, test_size)
     print('outputting file\n')
     output_file(training_set, testing_set, output)
-    print(output)
+    print('Complete')
 
 if __name__ == '__main__':
     #This is where the magic happens

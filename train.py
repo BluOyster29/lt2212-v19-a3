@@ -1,4 +1,4 @@
-import os, sys, argparse, numpy as np, pandas as pd, pickle
+import os, sys, argparse, numpy as np, pandas as pd, pickle, time
 from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_iris
 
@@ -17,7 +17,7 @@ def args():
     parser.add_argument("modelfile", type=str,
                         help="The name of the file to which you write the trained model.")
     args = parser.parse_args()
-    
+
     return args.datafile, args.ngram, args.modelfile
 
 def read_datafile(datafile, modelfile):
@@ -28,25 +28,28 @@ def read_datafile(datafile, modelfile):
     function seems to take an awfully long time on anything over 100 lines"""
 
     print("reading data")
+    folder = datafile.split('/')
+    parent = folder[:2]
+    parent = '/'.join(parent) + '/'
+    
     bata = pd.read_csv(datafile)
     print("generating model")
     lr = LogisticRegression(multi_class='multinomial', solver='lbfgs', n_jobs=-1, max_iter=20, verbose=1)
     print("fitting")
     pre_pickled_data = lr.fit(X=bata.iloc[:,:-1],y=bata.iloc[:,-1], sample_weight=None).sparsify()
     print("pickling")
-    ogorki = pickle.dump(pre_pickled_data, open(modelfile + '.p', "wb")) #outputting pickled file
-
-    return ogorki #ogorki is polish for pickled cucumber, my favourite snack
+    ogorki = pickle.dump(pre_pickled_data, open(parent + modelfile +'.p', "wb")) #outputting pickled file,ogorki is polish for pickled cucumber, my favourite snack
     
 def main():
 
     #main function
     datafile, ngram, modelfile = args()
-    data = read_datafile(datafile,modelfile)
+    read_datafile(datafile, modelfile)
+    
     print("Loading data from file {}.".format(datafile))
     print("Training {}-gram model.".format(ngram))
     print("Writing table to {}.".format(modelfile))
-
+    
 if __name__ == "__main__":
     main()
     
