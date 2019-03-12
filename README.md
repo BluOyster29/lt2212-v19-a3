@@ -17,73 +17,14 @@ The table below shows the results, I'll give a quick key to explain the headings
 * accuracy: This is the model's 'scores' as provided by the built-in function 'model.score()'
 * perplexity: This is calculated by myself therefore may not be perfect but the output does seem to fit my hypotheses
 
-My initial hypothesis consisted of expectations that the larger the training data the greater accuracy as we have more data to learn from. I believe that as the training range gets larger that can give more oppertunity for uncertainty as the probabilities will get smaller therefore I predicted that the perplexity will get larger. This does somewhat seem to be the case if we look at the results. 
+My initial hypothesis consisted of expectations that the larger the training data the greater accuracy as we have more data to learn from. I believe that as the training range gets larger that can give more oppertunity for uncertainty as the probabilities will get smaller therefore I predicted that the perplexity will get larger. This does somewhat seem to be the case if we look at the results. I tested the set by taking a range of lines, shuffling the lines then randomly choosing the test and training data. All of the experiments used the training/testing ratio pf 80/20. I have also experimented by changing the amount of n and choosing whether or not to inclue pos tags. 
 
-
-Instead explain any hypotheses you made, how you tested them, and what you observed.  This need not be more than 2-4 paragraphs worth of text and will be graded on reasonable effort.
+For the small set of 100 lines, we can see that 
 
 ## Reporting for Part Bonus 
 
 I have added the argument -P this will allow the user to choose between the words or the part of speech. This has given some interesting results when comparing to the same experiment but with just the word
 
-<h2>Statistics for experiments</h2>
-<p>The Following table shows the total statistics over all of the experiments.</p>
-
-|    | file_name        |   lines | ngram   | pos   |   accuracy |   perplexity |
-|----|------------------|---------|---------|-------|------------|--------------|
-|  0 | 100_lines        |     100 | 2-gram  | False |   0.288073 |      55.4609 |
-|  1 | 100_lines_n3     |     100 | 3-gram  | False |   0.246479 |      65.5333 |
-|  2 | 100_lines_n4     |     100 | 4-gram  | False |   0.283993 |      52.5624 |
-|  3 | 100_lines_pos    |     100 | 2-gram  | True  |   0.446927 |      69.1123 |
-|  4 | 100_lines_pos_n4 |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
-|  5 | 200_lines        |     200 | 2-gram  | False |   0.286672 |      97.3902 |
-|  6 | 200_lines_pos    |     200 | 2-gram  | True  |   0.409574 |     128.132  |
-|  7 | 500_lines_n2     |     500 | 2-gram  | False |   0.278261 |     199.712  |
-|  8 | 500_lines_pos_n2 |     500 | 2-gram  | True  |   0.514554 |     179.641  |
-<h2>Statistics for experiments</h1>
-<p>The Following table shows the total statistics over all of the experiments.</p>
-
-|    | file_name        |   lines | ngram   | pos   |   accuracy |   perplexity |
-|----|------------------|---------|---------|-------|------------|--------------|
-|  0 | 100_lines        |     100 | 2-gram  | False |   0.288073 |      55.4609 |
-|  1 | 100_lines_n3     |     100 | 3-gram  | False |   0.246479 |      65.5333 |
-|  2 | 100_lines_n4     |     100 | 4-gram  | False |   0.283993 |      52.5624 |
-|  3 | 100_lines_pos    |     100 | 2-gram  | True  |   0.446927 |      69.1123 |
-|  4 | 100_lines_pos_n4 |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
-|  5 | 200_lines        |     200 | 2-gram  | False |   0.286672 |      97.3902 |
-|  6 | 200_lines_pos    |     200 | 2-gram  | True  |   0.409574 |     128.132  |
-|  7 | 500_lines_n2     |     500 | 2-gram  | False |   0.278261 |     199.712  |
-|  8 | 500_lines_pos_n2 |     500 | 2-gram  | True  |   0.514554 |     179.641  |
-<h2>Statistics for experiments</h1>
-<p>The Following table shows the total statistics over all of the experiments.</p>
-
-|    | file_name        |   lines | ngram   | pos   |   accuracy |   perplexity |
-|----|------------------|---------|---------|-------|------------|--------------|
-|  0 | 100_lines        |     100 | 2-gram  | False |   0.288073 |      55.4609 |
-|  1 | 100_lines_n3     |     100 | 3-gram  | False |   0.246479 |      65.5333 |
-|  2 | 100_lines_n4     |     100 | 4-gram  | False |   0.283993 |      52.5624 |
-|  3 | 100_lines_pos    |     100 | 2-gram  | True  |   0.446927 |      69.1123 |
-|  4 | 100_lines_pos_n4 |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
-|  5 | 200_lines        |     200 | 2-gram  | False |   0.286672 |      97.3902 |
-|  6 | 200_lines_pos    |     200 | 2-gram  | True  |   0.409574 |     128.132  |
-|  7 | 500_lines_n2     |     500 | 2-gram  | False |   0.278261 |     199.712  |
-|  8 | 500_lines_pos_n2 |     500 | 2-gram  | True  |   0.514554 |     179.641  |
-<h2>Statistics for experiments</h1>
-<p>The Following table shows the total statistics over all of the experiments.</p>
-
-|    | file_name         |   lines | ngram   | pos   |   accuracy |   perplexity |
-|----|-------------------|---------|---------|-------|------------|--------------|
-|  0 | 1000_lines_n2     |    1000 | 2-gram  | False |   0.287221 |     336.599  |
-|  1 | 1000_lines_pos_n2 |    1000 | 2-gram  | True  |   0.439509 |     356.859  |
-|  2 | 100_lines         |     100 | 2-gram  | False |   0.288073 |      55.4609 |
-|  3 | 100_lines_n3      |     100 | 3-gram  | False |   0.246479 |      65.5333 |
-|  4 | 100_lines_n4      |     100 | 4-gram  | False |   0.283993 |      52.5624 |
-|  5 | 100_lines_pos     |     100 | 2-gram  | True  |   0.446927 |      69.1123 |
-|  6 | 100_lines_pos_n4  |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
-|  7 | 200_lines         |     200 | 2-gram  | False |   0.286672 |      97.3902 |
-|  8 | 200_lines_pos     |     200 | 2-gram  | True  |   0.409574 |     128.132  |
-|  9 | 500_lines_n2      |     500 | 2-gram  | False |   0.278261 |     199.712  |
-| 10 | 500_lines_pos_n2  |     500 | 2-gram  | True  |   0.514554 |     179.641  |
 <h2>Statistics for experiments</h2>
 <p>The Following table shows the total statistics over all of the experiments.</p>
 
@@ -99,3 +40,4 @@ I have added the argument -P this will allow the user to choose between the word
 |  7 | 200_lines_pos     |     200 | 2-gram  | True  |   0.409574 |     128.132  |
 |  8 | 500_lines_n2      |     500 | 2-gram  | False |   0.278261 |     199.712  |
 |  9 | 500_lines_pos_n2  |     500 | 2-gram  | True  |   0.514554 |     179.641  |
+
