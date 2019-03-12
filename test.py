@@ -105,8 +105,7 @@ def main():
     'rm ' + datafile + ' ' + training_file,
     shell=True
     )
-    
-    
+      
 if __name__ == "__main__":
     main()
     
