@@ -17,6 +17,7 @@ I have added -T and -P for specifying the test range and for using pos tags inst
 I added a small bit of code that outputs the pos one-hot vectors instead of the words. 
 
 <h2>Statistics for experiments</h1>
+<p>The Following table shows the total statistics over all of the experiments.</p>
 
 |    | file_name     |   lines | ngram   | pos   |   accuracy |   perplexity |
 |----|---------------|---------|---------|-------|------------|--------------|

@@ -38,7 +38,7 @@ if __name__ == "__main__":
     f.write(text)
     f.write('\n')
     x.close()
-    f.write('<h2>Statistics for experiments</h1>\n')
+    f.write('<h2>Statistics for experiments</h1>\n<p>The Following table shows the total statistics over all of the experiments.</p>\n')
     f.write('\n')
     f.write(t.tabulate(df,tablefmt="github", headers="keys"))
     f.close()
