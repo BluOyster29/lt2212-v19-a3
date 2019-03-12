@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     df = generate_stats()
     f = open('statistics.md', 'w+')
-    f.write(t.tabulate(df,tablefmt="markdown", headers="keys"))
+    f.write(t.tabulate(df,tablefmt="github", headers="keys"))
     f.close
     
 
