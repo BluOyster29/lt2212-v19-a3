@@ -34,7 +34,7 @@ if __name__ == "__main__":
     df = generate_stats()
     x = open('README.md','r')
     text = ''.join(x.readlines())
-    f = open('poop.md', 'w+')
+    f = open('README.md', 'w+')
     f.write(text)
     f.write('\n')
     x.close()
