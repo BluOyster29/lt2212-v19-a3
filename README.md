@@ -10,11 +10,21 @@ I have added -T and -P for specifying the test range and for using pos tags inst
 
 ## Reporting for Part 4
 
+The table below shows the results, I'll give a quick key to explain the headings.
+* file_name: This is the name of the outputted file
+* lines: This is the number of lines chosen, it is essentially the start line minus the end line. The training/testing ration is set in gendata.py but is typically 80/20
+* ngram: This is the output to the -N argument and specifices n's value
+* accuracy: This is the model's 'scores' as provided by the built-in function 'model.score()'
+* perplexity: This is calculated by myself therefore may not be perfect but the output does seem to fit my hypotheses
 
+My initial hypothesis consisted of expectations that the larger the training data the greater accuracy as we have more data to learn from. I believe that as the training range gets larger that can give more oppertunity for uncertainty as the probabilities will get smaller therefore I predicted that the perplexity will get larger. This does somewhat seem to be the case if we look at the results. 
+
+
+Instead explain any hypotheses you made, how you tested them, and what you observed.  This need not be more than 2-4 paragraphs worth of text and will be graded on reasonable effort.
 
 ## Reporting for Part Bonus 
 
-I added a small bit of code that outputs the pos one-hot vectors instead of the words. 
+I have added the argument -P this will allow the user to choose between the words or the part of speech. This has given some interesting results when comparing to the same experiment but with just the words
 
 <h2>Statistics for experiments</h1>
 <p>The Following table shows the total statistics over all of the experiments.</p>
