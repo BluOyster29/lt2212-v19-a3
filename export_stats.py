@@ -8,7 +8,8 @@ def generate_stats():
         for x in files:
             if '.md' in str(os.path.join(subdir, x)):
                 statistics.append(subdir + '/' + x)
-             
+            elif '.p' in str(os.path.join(subdir, x)):
+                one = subprocess.call('rm ' + subdir+'/'+x,shell=True)
     stat_model = []
     columns = ['file_name','lines', 'ngram','pos','accuracy','perplexity']
     
