@@ -32,9 +32,14 @@ def generate_stats():
 if __name__ == "__main__":
 
     df = generate_stats()
-    f = open('statistics.md', 'w+')
+    x = open('README.md','r')
+    text = ''.join(x.readlines())
+    f = open('poop.md', 'w+')
+    f.write(text)
+    x.close()
+    f.write('<h2>Statistics for experiments</h1>\n')
     f.write(t.tabulate(df,tablefmt="github", headers="keys"))
-    f.close
+    f.close()
     
 
 
