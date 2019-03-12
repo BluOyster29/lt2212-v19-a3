@@ -38,3 +38,18 @@ I have added the argument -P this will allow the user to choose between the word
 |  4 | 100_lines_pos_n4 |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
 |  5 | 200_lines        |     200 | 2-gram  | False |   0.286672 |      97.3902 |
 |  6 | 200_lines_pos    |     200 | 2-gram  | True  |   0.409574 |     128.132  |
+
+<h2>Statistics for experiments</h1>
+<p>The Following table shows the total statistics over all of the experiments.</p>
+
+|    | file_name        |   lines | ngram   | pos   |   accuracy |   perplexity |
+|----|------------------|---------|---------|-------|------------|--------------|
+|  0 | 100_lines        |     100 | 2-gram  | False |   0.288073 |      55.4609 |
+|  1 | 100_lines_n3     |     100 | 3-gram  | False |   0.246479 |      65.5333 |
+|  2 | 100_lines_n4     |     100 | 4-gram  | False |   0.283993 |      52.5624 |
+|  3 | 100_lines_pos    |     100 | 2-gram  | True  |   0.446927 |      69.1123 |
+|  4 | 100_lines_pos_n4 |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
+|  5 | 200_lines        |     200 | 2-gram  | False |   0.286672 |      97.3902 |
+|  6 | 200_lines_pos    |     200 | 2-gram  | True  |   0.409574 |     128.132  |
+|  7 | 500_lines_n2     |     500 | 2-gram  | False |   0.278261 |     199.712  |
+|  8 | 500_lines_pos_n2 |     500 | 2-gram  | True  |   0.514554 |     179.641  |
