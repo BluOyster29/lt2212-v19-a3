@@ -89,7 +89,7 @@ def main():
     print("Accuracy is {}".format(accuracy))
     print("Perplexity is {}".format(perplexity))
     f = open(modelfile[:-2] +'.md', 'w+')
-    f.write("<h1>Statistics<h1>\n")
+    f.write("<h1>Statistics<h1>")
     f.write("<h2>Datafile:</h2>\n<p>Loading data from file {}.</p>\n".format(datafile))
     f.write("<h2>Model file:</h2>\n<p> model from file {}.</p>\n".format(modelfile))
     f.write("<h2>Testing:</h2>\n<p> {}-gram model.</p>\n".format(ngram))
