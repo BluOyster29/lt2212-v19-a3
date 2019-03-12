@@ -24,22 +24,9 @@ Instead explain any hypotheses you made, how you tested them, and what you obser
 
 ## Reporting for Part Bonus 
 
-I have added the argument -P this will allow the user to choose between the words or the part of speech. This has given some interesting results when comparing to the same experiment but with just the words
+I have added the argument -P this will allow the user to choose between the words or the part of speech. This has given some interesting results when comparing to the same experiment but with just the word
 
-<h2>Statistics for experiments</h1>
-<p>The Following table shows the total statistics over all of the experiments.</p>
-
-|    | file_name        |   lines | ngram   | pos   |   accuracy |   perplexity |
-|----|------------------|---------|---------|-------|------------|--------------|
-|  0 | 100_lines        |     100 | 2-gram  | False |   0.288073 |      55.4609 |
-|  1 | 100_lines_n3     |     100 | 3-gram  | False |   0.246479 |      65.5333 |
-|  2 | 100_lines_n4     |     100 | 4-gram  | False |   0.283993 |      52.5624 |
-|  3 | 100_lines_pos    |     100 | 2-gram  | True  |   0.446927 |      69.1123 |
-|  4 | 100_lines_pos_n4 |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
-|  5 | 200_lines        |     200 | 2-gram  | False |   0.286672 |      97.3902 |
-|  6 | 200_lines_pos    |     200 | 2-gram  | True  |   0.409574 |     128.132  |
-
-<h2>Statistics for experiments</h1>
+<h2>Statistics for experiments</h2>
 <p>The Following table shows the total statistics over all of the experiments.</p>
 
 |    | file_name        |   lines | ngram   | pos   |   accuracy |   perplexity |
