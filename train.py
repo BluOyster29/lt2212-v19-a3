@@ -34,7 +34,7 @@ def read_datafile(datafile, modelfile):
     
     bata = pd.read_csv(datafile)
     print("generating model")
-    lr = LogisticRegression(multi_class='multinomial', solver='lbfgs', n_jobs=-1, max_iter=20, verbose=1)
+    lr = LogisticRegression(multi_class='multinomial', solver='lbfgs', n_jobs=-1, verbose=1)
     print("fitting")
     pre_pickled_data = lr.fit(X=bata.iloc[:,:-1],y=bata.iloc[:,-1], sample_weight=None).sparsify()
     print("pickling")
