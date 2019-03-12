@@ -96,7 +96,7 @@ def main():
     f.write("<h2>Accuracy:</h2>\n<p> {}.</p>\n".format(accuracy))
     f.write("<h2>Perplexity:</h2>\n<p> {}.</p>\n".format(perplexity))
     f.close()
-    '''
+    
     one = subprocess.call(
     'zip ' + zip_file + 'dataframes ' + datafile + ' ' +  training_file,
     shell=True
@@ -105,7 +105,7 @@ def main():
     'rm ' + datafile + ' ' + training_file,
     shell=True
     )
-    '''
+    
     
 if __name__ == "__main__":
     main()

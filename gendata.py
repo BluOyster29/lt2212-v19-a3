@@ -105,7 +105,7 @@ def gen_ngrams(start_line, end_line, line_matrix, one_hot_matrix, n,test_size):
     test set can be taken from random samples within a range'''
 
     np.random.shuffle(line_matrix) #randomizes the matrix
-    test_slice = int((test_size/ len(line_matrix)) * 100)
+    test_slice = int((len(line_matrix) / 100)) * test_size
     training_size = len(line_matrix) - test_slice #specifies how many lines belong to training
     print(training_size)
     training_lines,testing_lines = line_matrix[:training_size], line_matrix[training_size:] #slices the ranges
