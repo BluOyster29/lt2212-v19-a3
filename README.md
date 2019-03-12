@@ -19,12 +19,13 @@ The table below shows the results, I'll give a quick key to explain the headings
 
 My initial hypothesis consisted of expectations that the larger the training data the greater accuracy as we have more data to learn from. I believe that as the training range gets larger that can give more oppertunity for uncertainty as the probabilities will get smaller therefore I predicted that the perplexity will get larger. This does somewhat seem to be the case if we look at the results. I tested the set by taking a range of lines, shuffling the lines then randomly choosing the test and training data. All of the experiments used the training/testing ratio pf 80/20. I have also experimented by changing the amount of n and choosing whether or not to inclue pos tags. 
 
-For the small set of 100 lines, we can see that 
+The first experiment performed was on 100 lines. The perplexity is low, signifying an efficient model and the accuracy is relatively good, just under 0.3. When extending n to 3 the perplexity drops and the accuracy rises, this is suggesting that n=3 makes a good model. The 200 line experiment gave a similar accuracy of just under 0.3 however the perplexity has risen by nearly double. This is an interesting outcome as it is suggesting that a larger model is less efficient. If we add one to n the accuracy rises to 0.5 which is good but as the accuracy rises so does the perplexity but the perplexity is not much larger than n=2. At the other end of the scale, on the lines of 1000 the accuracy has not improved but the perplexity has risen by around 600%, this is showing that this model is not the most efficient. 
+
+The highest accuracy was achieved with n=3 for 200 lines, The accuracy os 0.51 and the perplexity os 109. Though this is quite a high perplexity, the accuracy is relatively good, this suggests that for the model it is good to have a lower training range but have a wide feature vector.
 
 ## Reporting for Part Bonus 
 
-I have added the argument -P this will allow the user to choose between the words or the part of speech. This has given some interesting results when comparing to the same experiment but with just the word
-
+The POS feature has given some interesting results. The accuracy is much higher but the perplexity is not that different. Compared to with POS not applied the pos models are about 0.2 more accurate than the word_vector model. This possibly due to the fact that the length of the vectors is a lot shorter for pos due to the vocabulary being much shorter. The model also takes much less time to train
 
 <h2>Statistics for experiments</h2>
 <p>The Following table shows the total statistics over all of the experiments.</p>
