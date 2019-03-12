@@ -25,6 +25,7 @@ For the small set of 100 lines, we can see that
 
 I have added the argument -P this will allow the user to choose between the words or the part of speech. This has given some interesting results when comparing to the same experiment but with just the word
 
+
 <h2>Statistics for experiments</h2>
 <p>The Following table shows the total statistics over all of the experiments.</p>
 
@@ -33,11 +34,14 @@ I have added the argument -P this will allow the user to choose between the word
 |  0 | 1000_lines_n2     |    1000 | 2-gram  | False |   0.287221 |     336.599  |
 |  1 | 1000_lines_pos_n2 |    1000 | 2-gram  | True  |   0.439509 |     356.859  |
 |  2 | 100_lines         |     100 | 2-gram  | False |   0.288073 |      55.4609 |
-|  3 | 100_lines_n4      |     100 | 4-gram  | False |   0.283993 |      52.5624 |
-|  4 | 100_lines_pos     |     100 | 2-gram  | True  |   0.446927 |      69.1123 |
-|  5 | 100_lines_pos_n4  |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
-|  6 | 200_lines         |     200 | 2-gram  | False |   0.286672 |      97.3902 |
-|  7 | 200_lines_pos     |     200 | 2-gram  | True  |   0.409574 |     128.132  |
-|  8 | 500_lines_n2      |     500 | 2-gram  | False |   0.278261 |     199.712  |
-|  9 | 500_lines_pos_n2  |     500 | 2-gram  | True  |   0.514554 |     179.641  |
-
+|  3 | 100_lines_n3      |     100 | 3-gram  | False |   0.317073 |      51.0392 |
+|  4 | 100_lines_n4      |     100 | 4-gram  | False |   0.283993 |      52.5624 |
+|  5 | 100_lines_pos     |     100 | 2-gram  | True  |   0.446927 |      69.1123 |
+|  6 | 100_lines_pos_n3  |     100 | 3-gram  | True  |   0.385124 |      74.1671 |
+|  7 | 100_lines_pos_n4  |     100 | 4-gram  | True  |   0.400314 |      74.7126 |
+|  8 | 200_lines         |     200 | 2-gram  | False |   0.286672 |      97.3902 |
+|  9 | 200_lines_n3      |     200 | 3-gram  | False |   0.51857  |     109.526  |
+| 10 | 200_lines_pos     |     200 | 2-gram  | True  |   0.409574 |     128.132  |
+| 11 | 200_lines_pos_n3  |     200 | 3-gram  | True  |   0.335646 |      97.5306 |
+| 12 | 500_lines_n2      |     500 | 2-gram  | False |   0.278261 |     199.712  |
+| 13 | 500_lines_pos_n2  |     500 | 2-gram  | True  |   0.514554 |     179.641  |
