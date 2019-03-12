@@ -1,12 +1,11 @@
 <h1>Statistics<h1>
-
-<h2>Loading data from file results/100_lines/100_lines_testing.csv.</h2>
-
-<h2>Loading model from file results/100_lines/100_lines.p.</h2>
-
-<h2>Testing 3-gram model.
-
-<h2>Accuracy: 0.290448343079922.</h2>
-
-<h2>Perplexity: 51.5708291335374.</h2>
-
+<h2>Datafile:</h2>
+<p>Loading data from file results/100_lines/100_lines_testing.csv.</p>
+<h2>Model file:</h2>
+<p> model from file results/100_lines/100_lines.p.</p>
+<h2>Testing:</h2>
+<p> 3-gram model.</p>
+<h2>Accuracy:</h2>
+<p> 0.28545454545454546.</p>
+<h2>Perplexity:</h2>
+<p> 52.77110499749341.</p>

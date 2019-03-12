@@ -91,11 +91,12 @@ def main():
     f = open(modelfile[:-2] +'.md', 'w+')
     f.write("<h1>Statistics<h1>\n")
     f.write("<h2>Datafile:</h2>\n<p>Loading data from file {}.</p>\n".format(datafile))
-    f.write("<h2>Loading model from file {}.</h2>\n\n".format(modelfile))
-    f.write("<h2>Testing {}-gram model.\n\n".format(ngram))
-    f.write("<h2>Accuracy: {}.</h2>\n\n".format(accuracy))
-    f.write("<h2>Perplexity: {}.</h2>\n\n".format(perplexity))
+    f.write("<h2>Model file:</h2>\n<p> model from file {}.</p>\n".format(modelfile))
+    f.write("<h2>Testing:</h2>\n<p> {}-gram model.</p>\n".format(ngram))
+    f.write("<h2>Accuracy:</h2>\n<p> {}.</p>\n".format(accuracy))
+    f.write("<h2>Perplexity:</h2>\n<p> {}.</p>\n".format(perplexity))
     f.close()
+    '''
     one = subprocess.call(
     'zip ' + zip_file + 'dataframes ' + datafile + ' ' +  training_file,
     shell=True
@@ -104,6 +105,7 @@ def main():
     'rm ' + datafile + ' ' + training_file,
     shell=True
     )
+    '''
     
 if __name__ == "__main__":
     main()
