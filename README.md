@@ -25,8 +25,6 @@ The highest accuracy was achieved with n=3 for 200 lines, The accuracy os 0.51 a
 
 ## Reporting for Part Bonus 
 
-I REALISE I HAVE DONE THIS WRONG, I WILL WORK ON THIS IGNORE THE POS REPORTING
-
 The POS feature has given some interesting results. The accuracy is much higher but the perplexity is not that different. Compared to with POS not applied the pos models are about 0.2 more accurate than the word_vector model. This possibly due to the fact that the length of the vectors is a lot shorter for pos due to the vocabulary being much shorter. The model also takes much less time to train
 
 <h2>Statistics for experiments</h2>
